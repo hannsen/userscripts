@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name		gazellegames ggn: create request with steamid
 // @namespace	 https://gazellegames.net/
-// @version		 1.2
+// @version		 1.3
 // @description	  create request with steamid | Greasemonkey 4.1: ✕  Tampermonkey 4.4: ✔ 
 // @author		 hoannsi
 // @match		 https://gazellegames.net/requests.php?action=new
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/gazellegames%20ggn%20create%20request%20with%20steamid.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/gazellegames%20ggn%20create%20request%20with%20steamid.js
 // @grant		 GM_xmlhttpRequest
 // ==/UserScript==
 

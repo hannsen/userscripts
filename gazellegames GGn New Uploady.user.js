@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name		 gazellegames GGn New Uploady
 // @namespace	 https://gazellegames.net/
-// @version		 6.1
+// @version		 6.2
 // @description	 Steam Uploady Fork for GGn | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔ 
 // @author		 NeutronNoir
 // @match		 https://gazellegames.net/upload.php*
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/gazellegames%20GGn%20New%20Uploady.user.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/gazellegames%20GGn%20New%20Uploady.user.js
 // @grant		 GM_xmlhttpRequest
 // ==/UserScript==
 

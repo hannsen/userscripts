@@ -6,7 +6,7 @@
 //                Will not show timers on things that happened out of view, or if the spawn date is greater than the time left in the game.
 //                All timers are cleared on game end.
 //		          This special version is a pub only version
-// @version       1.4
+// @version       1.5
 // @grant         none
 // @include       http://tagpro-*.koalabeast.com:*
 // @include       http://tangent.jukejuice.com:*
@@ -14,6 +14,8 @@
 // @author        CFlakes
 // @namespace     http://www.reddit.com/user/Cumflakes
 // @license       2014
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/TagPro%20Timers%20Pubs%20Only.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/TagPro%20Timers%20Pubs%20Only.js
 // ==/UserScript==
 
 tagpro.ready(function timers() {

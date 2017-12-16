@@ -3,7 +3,9 @@
 // @namespace   gazellegames
 // @description adds bundle tags to bookmark page (e.g. local multiplayer)| Greasemonkey 4.1: ✔ Tampermonkey 4.4: ✔ 
 // @include     https://gazellegames.net/bookmarks.php
-// @version     3.2
+// @version     3.3
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/gazellegames%20GGN%20more%20BookmarkTags.user.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/gazellegames%20GGN%20more%20BookmarkTags.user.js
 // @grant       none
 // ==/UserScript==
 var createCookie = function(name, value, days) {

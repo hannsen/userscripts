@@ -4,7 +4,9 @@
 // @description better screenshot handling for ggn | Greasemonkey 4.1: ✔ Tampermonkey 4.4: ✔ 
 // @include     https://gazellegames.net/upload.php*
 // @include     https://gazellegames.net/torrents.php?action=editgroup*
-// @version     3.1
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/gazellegames%20fuckingSceenshotFix.user.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/gazellegames%20fuckingSceenshotFix.user.js
+// @version     3.2
 // @grant       none
 // ==/UserScript==
 

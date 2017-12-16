@@ -7,7 +7,9 @@
 // @include       http://*.newcompte.fr:* 
 // @license       GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html 
 // @author        snaps
-// @version       0.1.0
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/TagPro%20Tile%20Pattern.user.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/TagPro%20Tile%20Pattern.user.js
+// @version       0.1.1
 // ==/UserScript==
 
 /* User-Defined Variables */

@@ -3,7 +3,9 @@
 // @namespace   https://gazellegames.net/torrents
 // @description unfolds all filelists | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔ 
 // @include     https://gazellegames.net/torrents.php?id=*
-// @version     3.3
+// @version     3.4
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/gazellegames%20GGN%201click%20collection%20add%20%2B%20unfold%20all%20filelists.user.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/gazellegames%20GGN%201click%20collection%20add%20%2B%20unfold%20all%20filelists.user.js
 // @grant       none
 // ==/UserScript==
 

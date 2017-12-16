@@ -3,8 +3,10 @@
 // @namespace   gazellegames
 // @description calculates gold per terabytehour on ggn| Greasemonkey 4.1: ✔ Tampermonkey 4.4: ✔ 
 // @include     https://gazellegames.net/torrents.php?id=*
-// @version     1.1
+// @version     1.2
 // @grant       none
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/gazellegames%20ggn_%20show%20gold%20per%20terabytehour.user.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/gazellegames%20ggn_%20show%20gold%20per%20terabytehour.user.js
 // ==/UserScript==
 
 
