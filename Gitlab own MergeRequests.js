@@ -26,7 +26,7 @@
     })
         .done(function( data ) {
         var open_mr = $(data).find('a#state-opened > span.badge').html();
-        $('.gitlab-own-merge-requests').html('' + open_mr );
+        $('.gitlab-own-merge-requests').html( open_mr );
     });
 
 })();
