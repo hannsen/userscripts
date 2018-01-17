@@ -17,8 +17,8 @@
     var $merge_button = $($(".user-counter:eq( 1 )").prop('outerHTML'));
     var new_href = $merge_button.children().attr('href').replace('assignee_id','state=opened&author_id');
     $merge_button.children().attr('href',new_href);
-    $merge_button.find('span').toggleClass('gitlab-own-merge-requests merge-requests-count issues-count');
-    $merge_button.find('span').removeClass('hidden');
+    $merge_button.find('span').toggleClass('gitlab-own-merge-requests merge-requests-count issues-count')
+        .removeClass('hidden');
     $($merge_button.prop('outerHTML')).insertBefore( ".user-counter:eq( 2 )" );
 
     $.ajax({
