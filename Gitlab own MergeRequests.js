@@ -1,36 +1,32 @@
 // ==UserScript==
-// @name         GitLab estimated Time extractor
+// @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
 // @version      1.0
-// @description  Extract time estimastions from gitlab issues
+// @description  Show Link to opened Merge Requests
 // @author       hannsen
-// @match        *://git04.quodata.de/*/*/issues*
-// @match        *://git04.quodata.de/dashboard/issues*
+// @match        https://git04.quodata.de/*
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
-// @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/GitLab%20estimated%20time%20extractor.js
-// @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/GitLab%20estimated%20time%20extractor.js
+// @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/Gitlab%20own%20MergeRequests.js
+// @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/Gitlab%20own%20MergeRequests.js
 // @grant        none
 // ==/UserScript==
-
 
 (function() {
     'use strict';
 
-    var hrefs = [];
-    var pattIssue = /.*\/issues\/\d*$/i;
-    $('.issues-list').find('a').each(function(){
-        if($(this).attr('href').match(pattIssue)){
-            $.ajax({
-                url: $(this).attr('href'),
-            }).done(function( data ) {
-                var $data_json = $(data).find('div[data-noteable-data]').attr('data-noteable-data');
-                var $json = JSON.parse($data_json);
-                var time_estimate =  $json.human_time_estimate;
-                if (time_estimate != null){
-                    $('#issue_' + $json.id).find('.issuable-info').append(
-                        '<span class="label color-label" style="background-color: #222222">' + time_estimate + '</span>');
-                }
-            });
-        }
+    var $merge_button = $($(".user-counter:eq( 1 )").prop('outerHTML'));
+    var new_href = $merge_button.children().attr('href').replace('assignee_id','state=opened&author_id');
+    $merge_button.children().attr('href',new_href);
+    $merge_button.find('span').toggleClass('gitlab-own-merge-requests merge-requests-count issues-count')
+        .removeClass('hidden');
+    $($merge_button.prop('outerHTML')).insertBefore( ".user-counter:eq( 2 )" );
+
+    $.ajax({
+        url: new_href,
+    })
+        .done(function( data ) {
+        var open_mr = $(data).find('a#state-opened > span.badge').html();
+        $('.gitlab-own-merge-requests').html( open_mr );
     });
+
 })();
