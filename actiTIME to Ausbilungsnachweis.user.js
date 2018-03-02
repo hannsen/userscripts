@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name        actiTIME to Ausbilungsnachweis 
+// @name        actiTIME to Ausbilungsnachweis
 // @namespace     https://actitime.net/
-// @version         1.6
-// @description      creates IHK Ausbilungsnachweis from actitime sheet | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔ 
+// @version         1.7
+// @description      creates IHK Ausbilungsnachweis from actitime sheet | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔
 // @author         hoannsi
 // @match         https://ktr.quodata.de/actitime*
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
@@ -66,10 +66,16 @@ var today = dd+'.'+mm+'.'+yyyy;
 workTimes=[];
 var i = 0;
 
+// Holt die Ankunfszeit aus den Kommentaren der ersten Zeile
 function getWorkTime(){
     $('.cursorImageLink')[i].click();
     setTimeout( function(){
-        workTimes.push( $("#editDescriptionPopupText")[0].value);
+        if( $("#editDescriptionPopupText")[0].value){
+            workTimes.push( $("#editDescriptionPopupText")[0].value);
+        }
+        else{
+            workTimes.push('9:00');
+        }
         if(i < 4){
             i++;
             getWorkTime();
