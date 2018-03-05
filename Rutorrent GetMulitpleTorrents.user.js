@@ -29,10 +29,11 @@ var butt = document.getElementById("mnu_help");
 
 
 var unfoldLink = document.createElement('a');
-var linkText = document.createTextNode('[get selected torrent files]');
-unfoldLink.appendChild(linkText);
-unfoldLink.id = 'unfoldLink';
-unfoldLink.title = 'get selected torrent files';
+var newHTML = document.createElement ('div');
+newHTML.id = 'moved';
+unfoldLink.appendChild(newHTML);
+unfoldLink.id = 'grab';
+unfoldLink.title = 'Grab';
 unfoldLink.href = 'javascript:void(0)';
 //unfoldLink.setAttribute('onclick', 'getTorrents()');
 
@@ -41,7 +42,7 @@ insertAfter(unfoldLink, butt);
 
 
 
-document.getElementById('unfoldLink').addEventListener('click', getTorrents, false);
+document.getElementById('grab').addEventListener('click', getTorrents, false);
 
 
 function getTorrents(){
