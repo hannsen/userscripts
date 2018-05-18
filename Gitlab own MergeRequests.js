@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Show Link to opened Merge Requests
 // @author       hannsen
 // @match        https://git04.quodata.de/*
@@ -29,4 +29,6 @@
         $('.gitlab-own-merge-requests').html( open_mr );
     });
 
+    // when comparing images, choose swipe method
+    $('li.swipe').click();
 })();
