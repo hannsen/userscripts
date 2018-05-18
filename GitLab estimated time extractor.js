@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitLab estimated time extractor
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.4
 // @description  Extract time estimations from gitlab issues to the issue list, also copyable to excel
 // @author       hannsen
 // @match        *://git04.quodata.de/*/*/issues*
@@ -16,8 +16,9 @@
 
 (function() {
     'use strict';
-
-    var toExportes = "Name\tAssigned\tMilestone\tZeitschaetzung\n";
+    var header = ["Name","Assigned","Description","Time estimate","Milestone",
+                  "Milestone start","Milestone due"];
+    var toExportes = header.join("\t") + "\n";
     var hrefs = [];
     var pattIssue = /.*\/issues\/\d*$/i;
     $('.issues-list').find('a').each(function(){
@@ -35,11 +36,19 @@
                 // assignee
                 var assignee_name = $json.assignees[0] ? $json.assignees[0].name : "";
                 toExport += assignee_name + "\t";
+                //description
+                //toExport += $json.description + "\t";
+                toExport += "TODO" + "\t";
+                //time estimate
+                toExport += (time_estimate || "") + "\t";
                 // milestone name
                 var milestone = $json.milestone ? $json.milestone.title : "";
                 toExport += milestone + "\t";
-                //time estimate
-                toExport += time_estimate || "" + "\t";
+                //milestone start
+                toExport += ($json.milestone ? $json.milestone.start_date || "" : "" ) + "\t";
+                //milestone due
+                toExport += ($json.milestone ? $json.milestone.due_date || "" : "" ) + "\t";
+
                 if (time_estimate != null){
                     $('#issue_' + $json.id).find('.issuable-info').append(
                         '<span class="label color-label" style="background-color: #222222">' + time_estimate + '</span>');
