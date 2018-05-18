@@ -30,5 +30,9 @@
     });
 
     // when comparing images, choose swipe method
-    $('li.swipe').click();
+    // var $swipeButton = $('.hidden-xs.btn.btn-default').clone();
+    // $swipeButton.removeAttr('href').click(function(){$('li.swipe').click();});
+    // $swipeButton.text('Swipe');
+    // $swipeButton.insertAfter('.hidden-xs.btn.btn-default');
+
 })();
