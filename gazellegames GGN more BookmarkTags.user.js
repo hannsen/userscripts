@@ -3,9 +3,7 @@
 // @namespace   gazellegames
 // @description adds bundle tags to bookmark page (e.g. local multiplayer)| Greasemonkey 4.1: ✔ Tampermonkey 4.4: ✔ 
 // @include     https://gazellegames.net/bookmarks.php
-// @version     3.3
-// @downloadURL  https://github.com/hannsen/userscripts/raw/master/gazellegames%20GGN%20more%20BookmarkTags.user.js
-// @updateURL    https://github.com/hannsen/userscripts/raw/master/gazellegames%20GGN%20more%20BookmarkTags.user.js
+// @version     3.4
 // @grant       none
 // ==/UserScript==
 var createCookie = function(name, value, days) {
@@ -36,8 +34,6 @@ function getCookie(c_name) {
     return "";
 }
 
-
-
 function getTorrentPage(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -56,45 +52,39 @@ catch(err){var cookieList = [];}
 
 var storedList = [];
 
-
-  
-  
 //if list from cookie is good we just take it
-  if (cookieList.length == titleList.length){
-    for(i=0;i<titleList.length;i++){
-      titleList[i].innerHTML = titleList[i].innerHTML +'<br><div style="text-decoration: none; color: grey">'+ cookieList[i] + '</div>';
-
-  
+if (cookieList.length == titleList.length){
+    for(var i=0;i<titleList.length;i++){
+        titleList[i].innerHTML = titleList[i].innerHTML +'<br><div style="text-decoration: none; color: grey">'+ cookieList[i] + '</div>';
     }
     //refresh the cookie
     var json_str = JSON.stringify(cookieList);
     createCookie('cookieList', json_str, 60);
-  }
+}
 //list is shit, we make new one
-  else{   
+else{
     for(i=0;i<titleList.length;i++){
         try{
-
-          var xmlString = getTorrentPage(titleList[i].href);
-          var re = /(<strong>Feature:<\/strong>.*?<\/div>)/;
-          xmlString = xmlString.match(re) [0];
-          xmlString = xmlString.replace(/<.*?>/g, '');
-          //xmlString is the string with features
-          storedList.push(xmlString);
-          titleList[i].innerHTML = titleList[i].innerHTML +'<br><div style="text-decoration: none; color: grey">'+ xmlString + '</div>';
-          }
+            var xmlString = getTorrentPage(titleList[i].href);
+            var re = /(<strong>Feature:<\/strong>.*?<\/div>)/;
+            xmlString = xmlString.match(re) [0];
+            xmlString = xmlString.replace(/<.*?>/g, '');
+            //xmlString is the string with features
+            storedList.push(xmlString);
+            titleList[i].innerHTML = titleList[i].innerHTML +'<br><div style="text-decoration: none; color: grey">'+ xmlString + '</div>';
+        }
         catch(err){
-          storedList.push("");
-          console.log('shit');
+            storedList.push("");
+            console.log('shit');
         }
     }
-    
-    //we set the generated values as cookie
-    var json_str = JSON.stringify(storedList);
-    createCookie('cookieList', json_str, 60);
-  }
 
-  
+    //we set the generated values as cookie
+    var json_str_1 = JSON.stringify(storedList);
+    createCookie('cookieList', json_str_1, 60);
+}
+
+
 
 
 
