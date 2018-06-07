@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         ggn request exporter
 // @namespace    http://gazellegames.net/
-// @version      0.1
-// @description  try to take over the world!
+// @version      0.3
+// @description  press f5 if it hangs
 // @author       You
 // @match        https://gazellegames.net/requests.php*
 // @grant GM_setValue
@@ -49,11 +49,8 @@
             result.platform=
                 $site.find(".thin h2 #groupplatform a").text();
 
-            result.filled=
-                $site.find(".label:contains('Filled') ~ td a")[0] ? 'yes' : 'no';
-
             result.gold=
-                $site.find("img[title='Gold']")[0]  ? 'yes' : 'no';
+                $site.find("img[title='Gold']")[0] ? 'yes' : 'no';
 
             result.rls_type=
                 $site.find(".label:contains('Acceptable Release Types') ~ td").text().trim();
@@ -64,7 +61,12 @@
             result.desc=
                 $site.find(".main_column_bg table tbody tr:last").text().trim();
 
-            results.push(result);
+            let filled =
+                $site.find(".label:contains('Filled') ~ td a")[0] ? true : false;
+
+            if(filled == false)
+                results.push(result);
+
             result = {};
             i++;
             if(i === len)
@@ -88,18 +90,18 @@
     }
 
     function download(filename, text) {
-    var pom = document.createElement('a');
-    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    pom.setAttribute('download', filename);
+        var pom = document.createElement('a');
+        pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        pom.setAttribute('download', filename);
 
-    if (document.createEvent) {
-        var event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        pom.dispatchEvent(event);
+        if (document.createEvent) {
+            var event = document.createEvent('MouseEvents');
+            event.initEvent('click', true, true);
+            pom.dispatchEvent(event);
+        }
+        else {
+            pom.click();
+        }
     }
-    else {
-        pom.click();
-    }
-}
 
 })();
