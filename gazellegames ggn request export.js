@@ -9,6 +9,8 @@
 // @grant GM_getValue
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
 // @grant		 GM_xmlhttpRequest
+// @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/gazellegames%20ggn%20request%20export.js
+// @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/gazellegames%20ggn%20request%20export.js
 
 // ==/UserScript==
 
