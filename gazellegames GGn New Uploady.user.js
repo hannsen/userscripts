@@ -31,7 +31,7 @@ function html2bb(str) {
     str = str.replace(/< *\/ *ul *>/g, "");
     str = str.replace(/< *ul *class=\\*\"bb_ul\\*\" *>/g, "");
     str = str.replace(/< *h2 *class=\"bb_tag\" *>/g, "\n\n[u]");
-    str = str.replace(/< *\/ *h2 *>/g, "[/u]\n");
+    str = str.replace(/< *\/ *h2 *>/g, "[/u]\n\n");
     str = str.replace(/< *strong *>/g, "[b]");
     str = str.replace(/< *\/ *strong *>/g, "[/b]");
     str = str.replace(/< *i *>/g, "[i]");
@@ -42,6 +42,7 @@ function html2bb(str) {
     str = str.replace(/< *\/ *b *>/g, "[/b]");
     str = str.replace(/< *a [^>]*>/g, "");
     str = str.replace(/< *\/ *a *>/g, "");
+    str = str.replace(/\n\n\n/g, "\n\n");
     //Yeah, all these damn stars. Because people put spaces where they shouldn't.
     return str;
 }
