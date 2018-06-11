@@ -31,7 +31,7 @@ function html2bb(str) {
     str = str.replace(/< *\/ *ul *>/g, "");
     str = str.replace(/< *ul *class=\\*\"bb_ul\\*\" *>/g, "");
     str = str.replace(/< *h2 *class=\"bb_tag\" *>/g, "\n\n[u]");
-    str = str.replace(/< *\/ *h2 *>/g, "[/u]");
+    str = str.replace(/< *\/ *h2 *>/g, "[/u]\n");
     str = str.replace(/< *strong *>/g, "[b]");
     str = str.replace(/< *\/ *strong *>/g, "[/b]");
     str = str.replace(/< *i *>/g, "[i]");
