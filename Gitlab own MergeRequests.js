@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      1.5
+// @version      1.6
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
@@ -36,7 +36,8 @@
         return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     }
 
-    window.onscroll = scrollFunction;
+    if(window.location.href.indexOf("merge_requests") > 0)
+        window.onscroll = scrollFunction;
 
 
     var $merge_button = $($(".user-counter:eq( 1 )").prop('outerHTML'));
