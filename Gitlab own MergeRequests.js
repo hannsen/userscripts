@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      1.1
-// @description  Show Link to opened Merge Requests
+// @version      1.5
+// @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
@@ -11,8 +11,33 @@
 // @grant        none
 // ==/UserScript==
 
+
 (function() {
     'use strict';
+
+    var swipe = 0;
+    function scrollFunction() {
+        if(!swipe)
+            swipe = $('li.swipe');
+
+        for(var i = 0; i < swipe.length; i++){
+            if(isScrolledIntoView(swipe[i])){
+                swipe[i].click();
+                return;
+            }
+        }
+    }
+
+    function isScrolledIntoView(elem) {
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
+        var elemTop = $(elem).offset().top;
+        var elemBottom = elemTop + $(elem).height();
+        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    }
+
+    window.onscroll = scrollFunction;
+
 
     var $merge_button = $($(".user-counter:eq( 1 )").prop('outerHTML'));
     var new_href = $merge_button.children().attr('href').replace('assignee_id','state=opened&author_id');
@@ -28,11 +53,5 @@
         var open_mr = $(data).find('a#state-opened > span.badge').html();
         $('.gitlab-own-merge-requests').html( open_mr );
     });
-
-    // when comparing images, choose swipe method
-    // var $swipeButton = $('.hidden-xs.btn.btn-default').clone();
-    // $swipeButton.removeAttr('href').click(function(){$('li.swipe').click();});
-    // $swipeButton.text('Swipe');
-    // $swipeButton.insertAfter('.hidden-xs.btn.btn-default');
 
 })();
