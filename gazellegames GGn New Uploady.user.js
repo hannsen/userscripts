@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name		 gazellegames GGn New Uploady
 // @namespace	 https://gazellegames.net/
-// @version		 6.2
+// @version		 6.3
 // @description	 Steam Uploady Fork for GGn | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔ 
 // @author		 NeutronNoir
 // @match		 https://gazellegames.net/upload.php*
@@ -144,7 +144,7 @@ function clickAllPtp(){
                                                              document.getElementById("album_desc").value += html2bb(gameInfo.mac_requirements.minimum) + "\n\n" + html2bb(gameInfo.mac_requirements.recommended);
                                                              break;
                                                      }
-                                                     document.getElementById("album_desc").value = document.getElementById("album_desc").value.slice(0, -1);
+                                                     
                                                      document.getElementById("album_desc").value += "[/quote]";
                                                  }
                                                 });
