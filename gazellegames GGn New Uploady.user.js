@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name		 gazellegames GGn New Uploady
 // @namespace	 https://gazellegames.net/
-// @version		 6.3
+// @version		 6.4
 // @description	 Steam Uploady Fork for GGn | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔
 // @author		 NeutronNoir
 // @match		 https://gazellegames.net/upload.php*
@@ -107,6 +107,9 @@ function clickAllPtp(){
                                                              case "sexual.content":
                                                                  genres.push("adult");
                                                                  break;
+                                                             case "scifi":
+                                                                 genres.push("science.fiction");
+                                                                 break;
                                                              default:
                                                                  genres.push(tag);
                                                                  break;
@@ -132,7 +135,7 @@ function clickAllPtp(){
 
 
                                                      //Now let's get the requirements
-                                                     document.getElementById("album_desc").value += "\n\n[quote][align=center][b][u]System Requirements[/u][/b][/align]";	//The requirements need to be in the description of the torrent.
+                                                     document.getElementById("album_desc").value += "\n\n[quote][align=center][b][u]System Requirements[/u][/b][/align]\n";	//The requirements need to be in the description of the torrent.
                                                      switch (document.getElementById("platform").value) {
                                                          case "Windows":
                                                              document.getElementById("album_desc").value += html2bb(gameInfo.pc_requirements.minimum) + "\n\n" + html2bb(gameInfo.pc_requirements.recommended);	//We add the requirements, both minimal and recommended, formatted appropriately.
