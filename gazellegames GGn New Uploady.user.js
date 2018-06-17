@@ -2,7 +2,7 @@
 // @name		 gazellegames GGn New Uploady
 // @namespace	 https://gazellegames.net/
 // @version		 6.3
-// @description	 Steam Uploady Fork for GGn | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔ 
+// @description	 Steam Uploady Fork for GGn | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔
 // @author		 NeutronNoir
 // @match		 https://gazellegames.net/upload.php*
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
@@ -17,8 +17,8 @@ var askScreens = false;
 function html2bb(str) {
     if(typeof str === "undefined") return "";
 
-    str = str.replace(/\r/g, "");    
-    str = str.replace(/\n/g, "");    
+    str = str.replace(/\r/g, "");
+    str = str.replace(/\n/g, "");
     str = str.replace(/< *br *\/*>/g, "\n");
     str = str.replace(/< *u *>/g, "[u]");
     str = str.replace(/< *h1*>/g, "[align=center][u]");
@@ -63,7 +63,7 @@ function clickAllPtp(){
                                                  onload: function(response) {
 
                                                      var gameInfo = response.response[document.getElementById("steamid").value].data;		//We store the data in gameInfo, since it's much easier to access this way
-                                                     
+
                                                      var addScreens = true;
                                                      if (askScreens === true) addScreens = confirm("Fill the screenshot boxes ?");
 
@@ -99,11 +99,11 @@ function clickAllPtp(){
                                                      gameInfo.genres.forEach(function (genre) {
                                                          var tag = genre.description.toLowerCase().replace(/ /g, "."); //Each genre is formatted as mentioned above and added to the "genres" array
                                                          switch (tag) {
-                                                             case "rpg":                                                                 
+                                                             case "rpg":
                                                                  genres.push("role.playing.game");
                                                                  break;
                                                              case "early.access":
-                                                                 break;                                                                 
+                                                                 break;
                                                              case "sexual.content":
                                                                  genres.push("adult");
                                                                  break;
@@ -144,7 +144,7 @@ function clickAllPtp(){
                                                              document.getElementById("album_desc").value += html2bb(gameInfo.mac_requirements.minimum) + "\n\n" + html2bb(gameInfo.mac_requirements.recommended);
                                                              break;
                                                      }
-                                                     
+
                                                      document.getElementById("album_desc").value += "[/quote]";
                                                  }
                                                 });
