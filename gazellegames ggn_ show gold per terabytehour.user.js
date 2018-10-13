@@ -16,7 +16,7 @@ var games = document.getElementsByClassName('group_torrent');
 for(i = 0; i < games.length; i++){
 
 try{
-   var childTd = games[i].getElementsByTagName('td')[1];
+   var childTd = games[i].getElementsByTagName('td')[2];
    var gameSize = childTd.innerHTML;
    var goldGeneration = games[i].nextElementSibling.firstElementChild.firstElementChild.getElementsByTagName('span')[1];
    
