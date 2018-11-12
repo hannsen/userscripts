@@ -1,7 +1,8 @@
 // ==UserScript==
+// https://github.com/hannsen/userscripts
 // @name         GitLab estimated time extractor
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  Extract time estimations from gitlab issues to the issue list, also copyable to excel
 // @author       hannsen
 // @match        *://git04.quodata.de/*/*/issues*

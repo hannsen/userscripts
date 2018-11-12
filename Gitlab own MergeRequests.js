@@ -1,7 +1,8 @@
 // ==UserScript==
+// https://github.com/hannsen/userscripts
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      1.6
+// @version      1.8
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
