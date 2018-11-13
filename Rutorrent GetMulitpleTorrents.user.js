@@ -5,7 +5,7 @@
 // @description gets multiple torrents which you select in rutorrent
 // @include     http://*ruTorrent*
 // @include     https://*ruTorrent*
-// @version     2.8
+// @version     2.9
 // @grant       none
 // @downloadURL  https://github.com/hannsen/userscripts/raw/master/Rutorrent%20GetMulitpleTorrents.user.js
 // @updateURL    https://github.com/hannsen/userscripts/raw/master/Rutorrent%20GetMulitpleTorrents.user.js
@@ -21,10 +21,10 @@ unfoldLink.id = 'grab';
 unfoldLink.title = 'Download selected torrent files';
 unfoldLink.href = 'javascript:void(0)';
 
-nav_bar.appendChild(unfoldLink);
-
-document.getElementById('grab').addEventListener('click', getTorrents, false);
-
+if(nav_bar){
+  nav_bar.appendChild(unfoldLink);
+  document.getElementById('grab').addEventListener('click', getTorrents, false);
+}
 
 function getTorrents(){
   var selected = document.getElementsByClassName("selected");
