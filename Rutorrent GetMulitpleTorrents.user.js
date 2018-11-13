@@ -5,7 +5,7 @@
 // @description gets multiple torrents which you select in rutorrent
 // @include     http://*ruTorrent*
 // @include     https://*ruTorrent*
-// @version     2.7
+// @version     2.8
 // @grant       none
 // @downloadURL  https://github.com/hannsen/userscripts/raw/master/Rutorrent%20GetMulitpleTorrents.user.js
 // @updateURL    https://github.com/hannsen/userscripts/raw/master/Rutorrent%20GetMulitpleTorrents.user.js
