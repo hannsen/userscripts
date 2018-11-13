@@ -28,7 +28,13 @@ document.getElementById('grab').addEventListener('click', getTorrents, false);
 
 function getTorrents(){
   var selected = document.getElementsByClassName("selected");
+  var dl_link = 'plugins/source/action.php?hash=';
+
+  if('/' != window.location.toString().slice(-1)){
+    dl_link = '/' + dl_link;
+  }
+
   for (var i=0;i<(selected.length-3);i++){
-    window.open(window.location + '/plugins/source/action.php?hash=' + selected[i].id);
+    window.open(window.location + dl_link + selected[i].id);
   }
 }
