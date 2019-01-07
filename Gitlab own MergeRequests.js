@@ -2,7 +2,7 @@
 // https://github.com/hannsen/userscripts
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      1.8
+// @version      1.9
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
@@ -16,33 +16,33 @@
 (function() {
     'use strict';
 
-    var swipe = 0;
-    function scrollFunction() {
-        if(!swipe)
-            swipe = $('li.swipe');
-
-        for(var i = 0; i < swipe.length; i++){
-            if(isScrolledIntoView(swipe[i])){
-                swipe[i].click();
-                return;
-            }
-        }
-    }
-
-    function isScrolledIntoView(elem) {
-        var docViewTop = $(window).scrollTop();
-        var docViewBottom = docViewTop + $(window).height();
-        var elemTop = $(elem).offset().top;
-        var elemBottom = elemTop + $(elem).height();
-        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-    }
-
-    if(window.location.href.indexOf("merge_requests") > 0)
-        window.onscroll = scrollFunction;
+    //    var swipe = 0;
+    //    function scrollFunction() {
+    //        if(!swipe)
+    //            swipe = $('li.swipe');
+//
+    //        for(var i = 0; i < swipe.length; i++){
+    //            if(isScrolledIntoView(swipe[i])){
+    //                swipe[i].click();
+    //                return;
+    //            }
+    //        }
+    //    }
+//
+    //    function isScrolledIntoView(elem) {
+    //        var docViewTop = $(window).scrollTop();
+    //        var docViewBottom = docViewTop + $(window).height();
+    //        var elemTop = $(elem).offset().top;
+    //        var elemBottom = elemTop + $(elem).height();
+    //        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    //    }
+//
+    //    if(window.location.href.indexOf("merge_requests") > 0)
+    //        window.onscroll = scrollFunction;
 
 
     var $merge_button = $($(".user-counter:eq( 1 )").prop('outerHTML'));
-    var new_href = $merge_button.children().attr('href').replace('assignee_id','state=opened&author_id');
+    var new_href = $merge_button.children().attr('href').replace('assignee_username','scope=all&state=opened&author_username');
     $merge_button.children().attr('href',new_href);
     $merge_button.find('span').toggleClass('gitlab-own-merge-requests merge-requests-count issues-count')
         .removeClass('hidden');
