@@ -4,12 +4,13 @@
 // @description   Tints every other floor tile a slightly different shade.| Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔ 
 // @include       http://tagpro-*.koalabeast.com:* 
 // @include       http://tangent.jukejuice.com:* 
+// @include       http://tagpro-test.koalabeast.com/game
 // @include       http://*.newcompte.fr:* 
 // @license       GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html 
 // @author        snaps
 // @downloadURL  https://github.com/hannsen/userscripts/raw/master/TagPro%20Tile%20Pattern.user.js
 // @updateURL    https://github.com/hannsen/userscripts/raw/master/TagPro%20Tile%20Pattern.user.js
-// @version       0.1.1
+// @version       0.1.2
 // ==/UserScript==
 
 /* User-Defined Variables */
