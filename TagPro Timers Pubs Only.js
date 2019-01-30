@@ -6,11 +6,12 @@
 //                Will not show timers on things that happened out of view, or if the spawn date is greater than the time left in the game.
 //                All timers are cleared on game end.
 //		          This special version is a pub only version
-// @version       1.5
+// @version       1.6
 // @grant         none
 // @include       http://tagpro-*.koalabeast.com:*
 // @include       http://tangent.jukejuice.com:*
 // @include       http://*.newcompte.fr:*
+// @include       http://tagpro-test.koalabeast.com/game
 // @author        CFlakes
 // @namespace     http://www.reddit.com/user/Cumflakes
 // @license       2014
