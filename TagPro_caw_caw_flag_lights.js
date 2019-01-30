@@ -3,7 +3,8 @@
 // @include http://*.koalabeast.com:*
 // @include http://*.jukejuice.com:*
 // @include http://*.newcompte.fr:*
-// @version 0.4
+// @include       http://tagpro-test.koalabeast.com/game
+// @version 0.5
 // @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/TagPro_caw_caw_flag_lights.js
 // @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/TagPro_caw_caw_flag_lights.js
 // ==/UserScript==
