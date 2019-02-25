@@ -2,7 +2,7 @@
 // https://github.com/hannsen/userscripts
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      2.0
+// @version      2.1
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
@@ -57,5 +57,10 @@
             $('.gitlab-own-merge-requests').html(open_mr_count);
             GM_setValue("open_mr_count", open_mr_count);
         });
+
+    // Grey out issues with pending Merge Request
+    if(document.location.href.indexOf('dashboard/issues?assignee_username=') !== -1){
+        $('li.issue:has(.issuable-mr)').css('opacity', 0.4);
+    }
 
 })();
