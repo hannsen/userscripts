@@ -2,7 +2,7 @@
 // https://github.com/hannsen/userscripts
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      2.1
+// @version      2.2
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
@@ -36,8 +36,17 @@
     //        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     //    }
     //
-    //    if(window.location.href.indexOf("merge_requests") > 0)
-    //        window.onscroll = scrollFunction;
+    //    
+    //
+
+    function colorCollapsed(){
+        $("div.diff-collapsed").css('background-color', 'red');
+    }
+
+    if(window.location.href.indexOf("merge_requests") > 0){
+        window.onscroll = colorCollapsed;
+    }
+
 
     var last_mr_count = GM_getValue("open_mr_count") || 0;
 
