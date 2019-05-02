@@ -2,7 +2,7 @@
 // https://github.com/hannsen/userscripts
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      2.2
+// @version      2.3
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
@@ -38,6 +38,15 @@
     //
     //    
     //
+
+    // Set ur own clone url prefix with GM_setValue("git_url_prefix", "username:token");
+    var git_url_prefix = GM_getValue("git_url_prefix");
+    var $http_clone = $('input[name="http_project_clone"]');
+    if(git_url_prefix && $http_clone){
+        var clone_url = $http_clone.val();
+        clone_url = clone_url.replace("https://", "https://" + git_url_prefix + "@");
+        $http_clone.val(clone_url);
+    }
 
     function colorCollapsed(){
         $("div.diff-collapsed").css('background-color', 'red');
