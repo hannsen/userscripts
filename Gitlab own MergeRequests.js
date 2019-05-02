@@ -42,7 +42,7 @@
     // Set ur own clone url prefix with GM_setValue("git_url_prefix", "username:token");
     var git_url_prefix = GM_getValue("git_url_prefix");
     var $http_clone = $('input[name="http_project_clone"]');
-    if(git_url_prefix && $http_clone){
+    if(git_url_prefix && $http_clone.val()){
         var clone_url = $http_clone.val();
         clone_url = clone_url.replace("https://", "https://" + git_url_prefix + "@");
         $http_clone.val(clone_url);
