@@ -22,8 +22,14 @@
        var customer = $(this).find('span.customer').text();
        var hash = md5(customer);
        var color = '#' + hash.substr(hash.length - 6);
-       color = shadeColor(color, 250);
+       color = shadeColor(color, 180);
        $(this).find('td').css('background-color', color);
 
+    });
+
+    $('td.leaveButtonCell:has(table.nonworking)').each(function(){
+       var index = $(this).closest('td')[0].cellIndex;
+        index = index + 2; // header has different index than input columns
+        $('#actualTTRows tr.taskRow td:nth-of-type('+ index +') input.inputTT').prop( "disabled", true ).fadeTo(0, 0.5);
     });
 })();
