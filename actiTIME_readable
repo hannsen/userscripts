@@ -1,10 +1,9 @@
 // ==UserScript==
 // @name         Actitime readable
 // @namespace    https://ktr.quodata.de/
-// @version      0.1
+// @version      0.2
 // @description  make it more readable
 // @author       You
-// @require      https://code.jquery.com/jquery-3.1.1.min.js
 // @match        https://ktr.quodata.de/actitime/user/submit_tt.do*
 // @grant        none
 // ==/UserScript==
@@ -23,7 +22,7 @@
        var customer = $(this).find('span.customer').text();
        var hash = md5(customer);
        var color = '#' + hash.substr(hash.length - 6);
-       color = shadeColor(color, 200);
+       color = shadeColor(color, 250);
        $(this).find('td').css('background-color', color);
 
     });
