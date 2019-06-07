@@ -2,11 +2,10 @@
 // https://github.com/hannsen/userscripts
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      2.3
+// @version      2.4
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
-// @require      https://code.jquery.com/jquery-3.1.1.min.js
 // @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/Gitlab%20own%20MergeRequests.js
 // @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/Gitlab%20own%20MergeRequests.js
 // @grant GM_setValue
@@ -36,7 +35,7 @@
     //        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     //    }
     //
-    //    
+    //
     //
 
     // Set ur own clone url prefix with GM_setValue("git_url_prefix", "username:token");
@@ -55,7 +54,6 @@
     if(window.location.href.indexOf("merge_requests") > 0){
         window.onscroll = colorCollapsed;
     }
-
 
     var last_mr_count = GM_getValue("open_mr_count") || 0;
 
