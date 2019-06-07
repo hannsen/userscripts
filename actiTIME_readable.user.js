@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name         Actitime readable
 // @namespace    https://ktr.quodata.de/
-// @version      0.2
+// @version      0.3
 // @description  make it more readable
 // @author       You
 // @match        https://ktr.quodata.de/actitime/user/submit_tt.do*
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/actiTIME_readable.user.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/actiTIME_readable.user.js
 // @grant        none
 // ==/UserScript==
 
