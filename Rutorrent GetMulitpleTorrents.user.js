@@ -5,16 +5,16 @@
 // @description gets multiple torrents which you select in rutorrent
 // @include     http://*ruTorrent*
 // @include     https://*ruTorrent*
-// @version     3.0
+// @version     3.1
 // @grant       none
 // @downloadURL  https://github.com/hannsen/userscripts/raw/master/Rutorrent%20GetMulitpleTorrents.user.js
 // @updateURL    https://github.com/hannsen/userscripts/raw/master/Rutorrent%20GetMulitpleTorrents.user.js
 // ==/UserScript==
 
-var nav_bar = document.getElementById("t");
+const nav_bar = document.getElementById("t");
 
-var unfoldLink = document.createElement('a');
-var newHTML = document.createElement('div');
+const unfoldLink = document.createElement('a');
+const newHTML = document.createElement('div');
 newHTML.id = 'moved';
 unfoldLink.appendChild(newHTML);
 unfoldLink.id = 'grab';
@@ -27,17 +27,36 @@ if (nav_bar) {
 }
 
 function getTorrents() {
-  var selected = document.getElementsByClassName("selected");
-  var dl_link = 'plugins/source/action.php?hash=';
+  const selected = document.getElementsByClassName("selected");
+  let dl_link = 'plugins/source/action.php';
 
   if ('/' != window.location.toString().slice(-1)) {
     dl_link = '/' + dl_link;
   }
 
-  for (var i = 0; i < (selected.length - 1); i++) {
-    var hash = selected[i].id;
+  function downloadTorrent(hash) {
+    const form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", dl_link);
+    form.setAttribute("target", "_blank");
+
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "hash";
+    input.value = hash;
+    form.appendChild(input);
+
+    document.body.appendChild(form);
+
+    form.submit();
+
+    document.body.removeChild(form);
+  }
+
+  for (let i = 0; i < (selected.length - 1); i++) {
+    let hash = selected[i].id;
     if (hash && hash.match(/[A-F0-9]{40}/i)) {
-      window.open(window.location + dl_link + hash);
+      downloadTorrent(hash);
     }
   }
 }
