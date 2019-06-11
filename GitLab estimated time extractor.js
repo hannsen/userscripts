@@ -2,7 +2,7 @@
 // https://github.com/hannsen/userscripts
 // @name         GitLab estimated time extractor
 // @namespace    http://tampermonkey.net/
-// @version      1.5
+// @version      1.6
 // @description  Extract time estimations from gitlab issues to the issue list, also copyable to excel
 // @author       hannsen
 // @match        *://git04.quodata.de/*/*/issues*
@@ -18,7 +18,7 @@
 (function() {
     'use strict';
     var header = ["Name","Assigned","Description","Time estimate","Milestone",
-                  "Milestone start","Milestone due"];
+                  "Milestone start","Milestone due","URL","Due date","Labels", "Last updated"];
     var toExportes = header.join("\t") + "\n";
     var hrefs = [];
     var pattIssue = /.*\/issues\/\d*$/i;
@@ -27,6 +27,7 @@
             $.ajax({
                 url: $(this).attr('href'),
             }).done(function( data ) {
+
                 var $data_json = $(data).find('div[data-noteable-data]').attr('data-noteable-data');
                 var $json = JSON.parse($data_json);
                 var time_estimate =  $json.human_time_estimate;
@@ -38,8 +39,11 @@
                 var assignee_name = $json.assignees[0] ? $json.assignees[0].name : "";
                 toExport += assignee_name + "\t";
                 //description
-                //toExport += $json.description + "\t";
-                toExport += "TODO" + "\t";
+                var desc = $json.description;
+                desc = desc.replace(/[\r\n]+/g, " ");
+                desc = desc.replace(/\t/g, " ");
+                toExport += desc + "\t";
+
                 //time estimate
                 toExport += (time_estimate || "") + "\t";
                 // milestone name
@@ -49,11 +53,24 @@
                 toExport += ($json.milestone ? $json.milestone.start_date || "" : "" ) + "\t";
                 //milestone due
                 toExport += ($json.milestone ? $json.milestone.due_date || "" : "" ) + "\t";
+                //url
+                toExport += 'https://' + window.location.hostname + this.url + "\t";
+                //due date
+                toExport += ($json.due_date ? $json.due_date : '') + "\t";
+                // labels
+                var labelnames = [];
+                for(var labelname in $json.labels){
+                   labelnames.push( $json['labels'][labelname]['title']);
+                }
+                toExport += labelnames.join(', ') + "\t";
+                // Last updated
+                toExport += ($json.updated_at ? $json.updated_at : '') + "\t";
 
                 if (time_estimate != null){
                     $('#issue_' + $json.id).find('.issuable-info').append(
                         '<span class="label color-label" style="background-color: #222222">' + time_estimate + '</span>');
                 }
+
                 toExport += "\n";
                 toExportes += toExport;
             });
@@ -77,4 +94,3 @@
 
 
 })();
-
