@@ -2,7 +2,7 @@
 // https://github.com/hannsen/userscripts
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      2.4
+// @version      2.5
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
@@ -75,7 +75,7 @@
         });
 
     // Grey out issues with pending Merge Request
-    if(document.location.href.indexOf('dashboard/issues?assignee_username=') !== -1){
+    if(document.location.href.indexOf('dashboard/issues?') !== -1 && document.location.href.indexOf('assignee_username=') !== -1){
         $('li.issue:has(.issuable-mr)').css('opacity', 0.4);
     }
 
