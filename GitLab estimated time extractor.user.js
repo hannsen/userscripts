@@ -2,14 +2,14 @@
 // https://github.com/hannsen/userscripts
 // @name         GitLab estimated time extractor
 // @namespace    http://tampermonkey.net/
-// @version      1.6
+// @version      1.7
 // @description  Extract time estimations from gitlab issues to the issue list, also copyable to excel
 // @author       hannsen
 // @match        *://git04.quodata.de/*/*/issues*
 // @match        *://git04.quodata.de/dashboard/issues*
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
-// @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/GitLab%20estimated%20time%20extractor.js
-// @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/GitLab%20estimated%20time%20extractor.js
+// @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/GitLab%20estimated%20time%20extractor.user.js
+// @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/GitLab%20estimated%20time%20extractor.user.js
 // @grant        none
 // ==/UserScript==
 
