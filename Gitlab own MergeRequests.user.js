@@ -2,12 +2,12 @@
 // https://github.com/hannsen/userscripts
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      2.5
+// @version      2.6
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
-// @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/Gitlab%20own%20MergeRequests.js
-// @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/Gitlab%20own%20MergeRequests.js
+// @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/Gitlab%20own%20MergeRequests.user.js
+// @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/Gitlab%20own%20MergeRequests.user.js
 // @grant GM_setValue
 // @grant GM_getValue
 // ==/UserScript==
