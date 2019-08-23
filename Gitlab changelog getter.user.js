@@ -5,6 +5,8 @@
 // @description  Gitlab Changelog Getter
 // @author       hoanns
 // @match        https://git04.quodata.de/*/merge_requests
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/Gitlab%20changelog%20getter.user.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/Gitlab%20changelog%20getter.user.js
 // @grant        none
 // ==/UserScript==
 (function() {
