@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         spotify ad-bypasser
 // @namespace    https://spotify.com/
-// @version      0.2
+// @version      0.3
 // @description  prevents crashing of the page if you use adblocker with spotify web
 // @author       You
 // @match        https://open.spotify.com/*
@@ -36,7 +36,7 @@
     var title = title_tag.textContent;
     console.log('changed ' + title);
 
-    if (title === 'Advertisement') {
+    if (title === 'Advertisement' || title === 'Spotify') {
       GM_setValue("page_reloaded", true);
       location.reload(true);
     }
