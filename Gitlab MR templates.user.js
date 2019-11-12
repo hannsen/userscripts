@@ -25,7 +25,7 @@
 
 ### QD-interne Beschreibung & Motivation
 
-### vorher/nachher zu mergende MRs:
+### Gleichzeitig zu mergende MRs:
 
 ### Automatische Tests
 `;
