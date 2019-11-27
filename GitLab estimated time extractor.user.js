@@ -2,7 +2,7 @@
 // https://github.com/hannsen/userscripts
 // @name         GitLab estimated time extractor
 // @namespace    http://tampermonkey.net/
-// @version      1.7
+// @version      1.8
 // @description  Extract time estimations from gitlab issues to the issue list, also copyable to excel
 // @author       hannsen
 // @match        *://git04.quodata.de/*/*/issues*
@@ -18,7 +18,7 @@
 (function() {
     'use strict';
     var header = ["Name","Assigned","Description","Time estimate","Milestone",
-                  "Milestone start","Milestone due","URL","Due date","Labels", "Last updated"];
+                  "Milestone start","Milestone due","URL","Due date","Labels", "Last updated", "Created at"];
     var toExportes = header.join("\t") + "\n";
     var hrefs = [];
     var pattIssue = /.*\/issues\/\d*$/i;
@@ -65,6 +65,8 @@
                 toExport += labelnames.join(', ') + "\t";
                 // Last updated
                 toExport += ($json.updated_at ? $json.updated_at : '') + "\t";
+                // created_at
+                toExport += ($json.created_at ? $json.created_at : '') + "\t";
 
                 if (time_estimate != null){
                     $('#issue_' + $json.id).find('.issuable-info').append(
