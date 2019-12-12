@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MR Templates Gitlab
 // @namespace    http://quodata.de/
-// @version      1.3
+// @version      1.4
 // @description  Show merge request templates
 // @author       hannsen
 // @match        https://git04.quodata.de/it/delphi/merge_requests/new*
@@ -28,6 +28,8 @@
 ### Gleichzeitig zu mergende MRs:
 
 ### Automatische Tests
+
+### Auslieferung auf die Produktion
 `;
 
 
