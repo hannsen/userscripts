@@ -77,6 +77,7 @@
       'cancelable': true
     });
     elem.dispatchEvent(event);
+    elem.style.color = 'red';
   }
 
 })();
