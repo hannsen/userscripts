@@ -2,7 +2,7 @@
 // https://github.com/hannsen/userscripts
 // @name         My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      2.7
+// @version      2.8
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
 // @match        https://git04.quodata.de/*
@@ -69,7 +69,7 @@
 
     // Coloring collapsed diffs
     function colorCollapsed(){
-        $("div.diff-collapsed").css('background-color', 'red');
+        $("div.diff-collapsed, div.nothing-here-block").css('background-color', 'red');
     }
     if(window.location.href.indexOf("merge_requests") > 0){
         window.onscroll = colorCollapsed;
