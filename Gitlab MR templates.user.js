@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MR Templates Gitlab
 // @namespace    http://quodata.de/
-// @version      1.4
+// @version      1.5
 // @description  Show merge request templates
 // @author       hannsen
 // @match        https://git04.quodata.de/it/delphi/merge_requests/new*
@@ -21,22 +21,13 @@
 (function() {
     'use strict';
 
-    var my_template = `### Suggested CHANGELOG entry
-
-### QD-interne Beschreibung & Motivation
-
-### Gleichzeitig zu mergende MRs:
-
-### Automatische Tests
-
-### Auslieferung auf die Produktion
-`;
-
-
     $.ajax({
         url: "https://git04.quodata.de/qd_drupal_projects/hub/templates/merge_request/default_template",
     }).done(function(data){
-        var to_insert = GM_getValue('short_template') ? my_template : data.content;
+        var to_insert = data.content;
+        if(GM_getValue('short_template')){
+            to_insert = filterToShortTemplate(to_insert);
+        }
         $('#merge_request_description').val(to_insert);
 
         // So the scrollbar shows
@@ -45,6 +36,16 @@
         press.which = 32; //Space
         $("#merge_request_description").trigger(press);
     });
+
+    function filterToShortTemplate(input){
+        var lines = input.split('\n');
+        var filtered = lines.filter(function (line) {
+            return !line ||
+                line.indexOf('#') == 0 || // Ueberschriften
+                line.indexOf('* [ ]') == 0 ; // Checkboxen
+        });
+        return filtered.join('\n');
+    }
 
 
 })();
