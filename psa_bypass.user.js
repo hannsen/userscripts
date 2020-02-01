@@ -1,13 +1,11 @@
 // ==UserScript==
 // @name         PSA*RIPS Bypasser
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Bypass url shorteners/ads
 // @author       You
 // @match        https://psarips.one/*
-// @match        https://reqbin.com/curl
-// @grant GM_setValue
-// @grant GM_getValue
+// @match        https://reqbin.com/curl*
 // ==/UserScript==
 
 (function() {
@@ -15,15 +13,10 @@
     var $ = jQuery;
 
     // PSA SIDE
-    function init_bypass(){
-        var url = $(this).prev().attr('href');
-        GM_setValue('psa_url', url);
-        window.open('https://reqbin.com/curl');
-    }
-
     $('a[href*="/exit/"]').each(function(){
-        var button = $('<a class="button"  href="javascript:void(0)">  Bypass</a>');
-        button.click(init_bypass);
+        var url = $(this).attr('href');
+        var button = $('<a target="_blank">  Bypass</a>');
+        button.attr('href', 'https://reqbin.com/curl?psa_url=' + encodeURIComponent(url));
         $(this).after(button);
     });
 
@@ -41,10 +34,9 @@
         waitForLoaded.observe(document.body, config)
     }
 
-    var psa_url = GM_getValue('psa_url');
+    var urlParams = new URLSearchParams(window.location.search);
+    var psa_url = urlParams.get('psa_url');
     if(psa_url && window.location.href.indexOf("reqbin.com") > 0){
-        GM_setValue('psa_url', '');
-
         waitForJquerySelector('.CodeMirror', function(editor_elem){
             var editor = editor_elem.CodeMirror;
             editor.setValue('curl --location --silent -D - -o - ' + psa_url);
