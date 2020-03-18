@@ -20,7 +20,7 @@
 // ==/UserScript==
 (function() {
     'use strict';
-GM_setValue('short_template', 1);
+
     $.ajax({
         url: "https://git04.quodata.de/qd_drupal_projects/hub/templates/merge_request/default_template",
     }).done(function(data){
