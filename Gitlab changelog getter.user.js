@@ -14,7 +14,7 @@
 
     var $ = jQuery;
 
-    var project = window.location.href.match(/quodata.de\/(.+?)\/merge/)[1];
+    var project = window.location.href.match(/quodata.de\/(.+?)\/-\/merge_requests/)[1];
     var ids = {
         "qd_drupal_projects/hub": "154",
         "qd_drupal_projects/qd_ptop_modules_project": "155",
