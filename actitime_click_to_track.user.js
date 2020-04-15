@@ -5,8 +5,8 @@
 // @description  Actitime click next to task to track
 // @author       You
 // @match        https://ktr.quodata.de/actitime/*
-// @downloadURL  https://github.com/hannsen/userscripts/raw/master/Actitime_click_to_track.user.js
-// @updateURL    https://github.com/hannsen/userscripts/raw/master/Actitime_click_to_track.user.js
+// @downloadURL  https://github.com/hannsen/userscripts/raw/master/actitime_click_to_track.user.js
+// @updateURL    https://github.com/hannsen/userscripts/raw/master/actitime_click_to_track.user.js
 // @grant GM_setValue
 // @grant GM_getValue
 // ==/UserScript==
