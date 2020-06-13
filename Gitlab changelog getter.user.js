@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Gitlab Changelog Getter
+// @name         GitLab Changelog Getter
 // @namespace    http://git04.quodata.de
 // @version      0.2
-// @description  Gitlab Changelog Getter
+// @description  GitLab Changelog Getter
 // @author       hoanns
 // @match        https://git04.quodata.de/*/merge_requests*
 // @downloadURL  https://github.com/hannsen/userscripts/raw/master/Gitlab%20changelog%20getter.user.js

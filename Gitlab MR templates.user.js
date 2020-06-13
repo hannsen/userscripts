@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         MR Templates Gitlab
+// @name         MR Templates GitLab
 // @namespace    http://quodata.de/
 // @version      1.6
 // @description  Show merge request templates
