@@ -20,6 +20,7 @@
         "qd_drupal_projects/qd_ptop_modules_project": "155",
         "it/oequasta-kollektivbildung": "96",
         "it/oequasta": "85",
+        "it/delphi": "196",
     };
     var project_id = ids[project];
 
