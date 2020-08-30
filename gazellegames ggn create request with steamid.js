@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name		gazellegames ggn: create request with steamid
 // @namespace	 https://gazellegames.net/
-// @version		 1.3
+// @version		 1.4
 // @description	  create request with steamid | Greasemonkey 4.1: ✕  Tampermonkey 4.4: ✔ 
 // @author		 hoannsi
-// @match		 https://gazellegames.net/requests.php?action=new
+// @match		 https://gazellegames.net/requests.php?action=new*
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
 // @downloadURL  https://github.com/hannsen/userscripts/raw/master/gazellegames%20ggn%20create%20request%20with%20steamid.js
 // @updateURL    https://github.com/hannsen/userscripts/raw/master/gazellegames%20ggn%20create%20request%20with%20steamid.js
@@ -53,45 +53,42 @@ function html2bb(str) {
 
 (function() {
     'use strict';
- 
-        document.getElementById("steamId").addEventListener("blur", function() {			//After the "appid" input loses focus
-            var request = new GM_xmlhttpRequest({method: "GET",								//We call the Steam API to get info on the game
-                                                 url: "http://store.steampowered.com/api/appdetails?l=en&appids=" + document.getElementById("steamId").value,
-                                                 responseType: "json",
-                                                 onload: function(response) {
 
-                                                     var gameInfo = response.response[document.getElementById("steamId").value].data;		//We store the data in gameInfo, since it's much easier to access this way
-                                                     document.getElementsByName("title")[0].value = gameInfo.name;								//Get the name of the game
-													
-                                                     document.getElementsByName("description")[0].value = "http://store.steampowered.com/app/"+document.getElementById("steamId").value+"/\n\n[align=center][b][u]About the game[/u][/b][/align]\n" + html2bb(gameInfo.about_the_game); //Get the description, formatted appropriately
-                                                     document.getElementsByName("year")[0].value = gameInfo.release_date.date.split(", ").pop(); //Get the year, which is actually the last number of "release_date.date"
+    document.getElementById("steamId").addEventListener("blur", function() {			//After the "appid" input loses focus
+        GM_xmlhttpRequest({method: "GET",								//We call the Steam API to get info on the game
+                           url: "http://store.steampowered.com/api/appdetails?l=en&appids=" + document.getElementById("steamId").value,
+                           responseType: "json",
+                           onload: function(response) {
 
-                                                     //Genres are in an object array. Need to make them lowercase, replace spaces with dots and separate them with ", "
-                                                     var genres = [];
-                                                     gameInfo.genres.forEach(function (genre) {
-                                                         var tag = genre.description.toLowerCase().replace(/ /g, "."); //Each genre is formatted as mentioned above and added to the "genres" array
-                                                         switch (tag) {
-                                                             case "rpg":
-                                                                 tag = "role.playing.game";
-                                                             default:
-                                                                 genres.push(tag);
-                                                             case "early.access":
-                                                                 break;
-                                                         }
+                               var gameInfo = response.response[document.getElementById("steamId").value].data;		//We store the data in gameInfo, since it's much easier to access this way
+                               document.getElementsByName("title")[0].value = gameInfo.name;								//Get the name of the game
 
-                                                     });
-                                                     document.getElementById("tags").value = genres.join(", ");							//Every string in the "genres" array is then concatenated with ", " between them
+                               document.getElementsByName("description")[0].value = "http://store.steampowered.com/app/"+document.getElementById("steamId").value+"/\n\n[align=center][b][u]About the game[/u][/b][/align]\n" + html2bb(gameInfo.about_the_game); //Get the description, formatted appropriately
+                               document.getElementsByName("year")[0].value = gameInfo.release_date.date.split(", ").pop(); //Get the year, which is actually the last number of "release_date.date"
 
-    var request2 = new XMLHttpRequest();
-    request2.open( "GET", "https://gazellegames.net/imgup.php?img=" + gameInfo.header_image.split("?")[0], false ); // false for synchronous request
-    request2.send( null );
-    document.getElementsByName("image")[0].value = request2.responseText;													
+                               //Genres are in an object array. Need to make them lowercase, replace spaces with dots and separate them with ", "
+                               var genres = [];
+                               gameInfo.genres.forEach(function (genre) {
+                                   var tag = genre.description.toLowerCase().replace(/ /g, "."); //Each genre is formatted as mentioned above and added to the "genres" array
+                                   switch (tag) {
+                                       case "rpg":
+                                           tag = "role.playing.game";
+                                       default:
+                                           genres.push(tag);
+                                       case "early.access":
+                                           break;
+                                   }
 
+                               });
+                               document.getElementById("tags").value = genres.join(", ");							//Every string in the "genres" array is then concatenated with ", " between them
 
+                               var request2 = new XMLHttpRequest();
+                               request2.open( "GET", "https://gazellegames.net/imgup.php?img=" + gameInfo.header_image.split("?")[0], false ); // false for synchronous request
+                               request2.send( null );
+                               document.getElementsByName("image")[0].value = request2.responseText;
+                           }
+                          });
+    });
 
-                                                 }
-                                                });
-        });
-    
 })();
 
