@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         spotify ad-bypasser
 // @namespace    https://spotify.com/
-// @version      0.4
+// @version      0.5
 // @description  prevents crashing of the page if you use adblocker with spotify web
 // @author       You
 // @match        https://open.spotify.com/*
@@ -18,11 +18,14 @@
   var last_title = GM_getValue("last_title");
   console.log('last_title ' + last_title);
 
-  waitForSelector('a[data-testid="nowplaying-track-link"]', startTitleObserve);
+  var curr_title_selector = 'a[data-testid="nowplaying-track-link"]';
+  var track_list_row_selector = '[data-testid="tracklist-row"] > div[aria-colindex="2"] span';
+
+  waitForSelector(curr_title_selector, startTitleObserve);
 
   if (GM_getValue("page_reloaded")) {
     GM_setValue("page_reloaded", false);
-    waitForSelector('.tracklist-name', playNextSong);
+    waitForSelector(track_list_row_selector, playNextSong);
   }
 
   function startTitleObserve (found_element) {
@@ -58,7 +61,7 @@
   }
 
   function playNextSong () {
-    var titleElems = document.querySelectorAll('.tracklist-name');
+    var titleElems = document.querySelectorAll(track_list_row_selector);
     var clickOnNext = false;
     for (var i = 0; i < titleElems.length; i++) {
       var elem = titleElems[i];
