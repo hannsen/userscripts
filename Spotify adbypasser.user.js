@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         spotify ad-bypasser
 // @namespace    https://spotify.com/
-// @version      0.3
+// @version      0.4
 // @description  prevents crashing of the page if you use adblocker with spotify web
 // @author       You
 // @match        https://open.spotify.com/*
@@ -18,7 +18,7 @@
   var last_title = GM_getValue("last_title");
   console.log('last_title ' + last_title);
 
-  waitForSelector('.track-info__name', startTitleObserve);
+  waitForSelector('a[data-testid="nowplaying-track-link"]', startTitleObserve);
 
   if (GM_getValue("page_reloaded")) {
     GM_setValue("page_reloaded", false);
@@ -28,6 +28,7 @@
   function startTitleObserve (found_element) {
     title_tag = found_element;
     GM_setValue("last_title", title_tag.textContent);
+    console.log('startTitleObserve ' + title_tag.textContent);
     var observer = new MutationObserver(onTitleChange);
     observer.observe(title_tag, config);
   }
