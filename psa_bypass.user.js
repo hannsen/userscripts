@@ -1,23 +1,23 @@
 // ==UserScript==
 // @name         PSA*RIPS Bypasser
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      0.6
 // @description  Bypass url shorteners/ads
 // @author       You
+// @match        https://psarips.uk/*
+// @match        https://psarips.com/*
 // @match        https://psarips.one/*
-// @match        https://reqbin.com/curl*
 // @grant		 GM_xmlhttpRequest
 // ==/UserScript==
 
 (function() {
     'use strict';
 
-    var $ = jQuery;
 
     // PSA SIDE
-    $('a[href*="/exit/"]').each(function(){
-        var url = $(this).attr('href');
-        var button = $('<a target="_blank">  Bypass</a>');
+    jQuery('a[href*="/exit/"]').each(function(){
+        var url = jQuery(this).attr('href');
+        var button = jQuery('<a target="_blank">  Bypass</a>');
         button.click(function(){
             GM_xmlhttpRequest({
                 method: "POST",
@@ -31,7 +31,7 @@
                 }
             });
         });
-        $(this).after(button);
+        jQuery(this).after(button);
     });
 
 
