@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         PSA*RIPS Bypasser
 // @namespace    http://tampermonkey.net/
-// @version      0.6
+// @version      0.7
 // @description  Bypass url shorteners/ads
 // @author       You
 // @match        https://psarips.uk/*
 // @match        https://psarips.com/*
 // @match        https://psarips.one/*
 // @grant		 GM_xmlhttpRequest
+// @require      https://code.jquery.com/jquery-3.1.1.min.js
 // ==/UserScript==
 
 (function() {
