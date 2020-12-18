@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PSA*RIPS Bypasser
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.5
 // @description  Bypass url shorteners/ads
 // @author       You
 // @match        https://psarips.one/*
@@ -24,7 +24,7 @@
                 headers: {
                     "Content-Type": "application/json"
                 },
-                url: "http://X.X.X.X:5000/",
+                url: "http://hoa" + "a".replace('a','n') + "ns.us.to/",
                 data: JSON.stringify({link:url}) ,
                 onload: function(response) {
                     window.open(response.responseText);
