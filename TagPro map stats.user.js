@@ -2,7 +2,7 @@
 // @name         Tagpro map stats
 // @namespace    https://tagpro.koalabeast.com/
 // @version      0.1
-// @description  Tagpro map stats
+// @description  Tagpro map stats duh
 // @author       You
 // @match        https://tagpro.koalabeast.com/game
 // @icon         https://www.google.com/s2/favicons?domain=koalabeast.com
