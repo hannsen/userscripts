@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tagpro map stats
 // @namespace    https://tagpro.koalabeast.com/
-// @version      0.1
+// @version      0.2
 // @description  Tagpro map stats duh
 // @author       You
 // @match        https://tagpro.koalabeast.com/game
@@ -34,7 +34,7 @@
                 for(i in maps.rotation){
                     var map = maps.rotation[i];
                     if(map.name == mapname){
-                        var msg = "Map " + mapname + ": score " + map.averageRating + "%, played " + map.totalPlays + " times";
+                        var msg = "Map Stats for " + mapname + ": score " + map.averageRating + "%, played " + map.totalPlays + " times";
                         // + (i + 1) + ". place in rotation";
                         setTimeout(function(){
                             tagpro.socket.emit("chat", {
