@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tagpro map stats
 // @namespace    https://tagpro.koalabeast.com/
-// @version      0.3
+// @version      0.4
 // @description  Tagpro map stats duh
 // @author       You
 // @match        https://tagpro.koalabeast.com/game
@@ -25,19 +25,24 @@
         waitForLoaded.observe(document.body, config)
     }
 
+    function ucfirst(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     function getMapStat(mapname){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                var maps = JSON.parse(xhttp.responseText);
-                var i, x;
-                var maptypes = ['rotation', 'retired'];
-                for(x in maptypes){
-                    for(i in maps[maptypes[x]]){
-                        var map = maps.rotation[i];
+                var allmaps = JSON.parse(xhttp.responseText);
+                var i, maptype;
+                for(maptype in allmaps){
+                    var maps = allmaps[maptype];
+                    for(i in maps){
+                        var map = maps[i];
                         if(map.name == mapname){
-                        var msg = "Map Stats for " + mapname + " / rating: " + map.averageRating + "% / total plays: " + map.totalPlays;
+                            var msg = mapname + " (" + ucfirst(maptype) + " map) / rating: " + map.averageRating + "% / total plays: " + map.totalPlays;
                             // + (i + 1) + ". place in rotation";
+                            console.log(msg);
                             setTimeout(function(){
                                 tagpro.socket.emit("chat", {
                                     message: msg,
