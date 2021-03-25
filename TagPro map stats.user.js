@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tagpro map stats
 // @namespace    https://tagpro.koalabeast.com/
-// @version      0.2
+// @version      0.3
 // @description  Tagpro map stats duh
 // @author       You
 // @match        https://tagpro.koalabeast.com/game
@@ -30,21 +30,25 @@
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var maps = JSON.parse(xhttp.responseText);
-                var i;
-                for(i in maps.rotation){
-                    var map = maps.rotation[i];
-                    if(map.name == mapname){
-                        var msg = "Map Stats for " + mapname + ": score " + map.averageRating + "%, played " + map.totalPlays + " times";
-                        // + (i + 1) + ". place in rotation";
-                        setTimeout(function(){
-                            tagpro.socket.emit("chat", {
-                                message: msg,
-                                toAll: 1,
-                            });
-                        }, 8000);
-                        return;
+                var i, x;
+                var maptypes = ['rotation', 'retired'];
+                for(x in maptypes){
+                    for(i in maps[maptypes[x]]){
+                        var map = maps.rotation[i];
+                        if(map.name == mapname){
+                        var msg = "Map Stats for " + mapname + " / rating: " + map.averageRating + "% / total plays: " + map.totalPlays;
+                            // + (i + 1) + ". place in rotation";
+                            setTimeout(function(){
+                                tagpro.socket.emit("chat", {
+                                    message: msg,
+                                    toAll: 1,
+                                });
+                            }, 8000);
+                            return;
+                        }
                     }
                 }
+
             }
         };
         xhttp.open("GET", "https://tagpro.koalabeast.com/maps.json", true);
