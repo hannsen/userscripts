@@ -1,10 +1,11 @@
 // ==UserScript==
 // https://github.com/hannsen/userscripts
-// @name         My Merge Requests Gitlab
+// @name         Gitlab My Merge Requests Gitlab
 // @namespace    http://tampermonkey.net/
-// @version      2.9
+// @version      2.13
 // @description  Show Link to opened Merge Requests, auto click swipe on MR with pics
 // @author       hannsen
+// @require      https://code.jquery.com/jquery-3.1.1.min.js
 // @match        https://git04.quodata.de/*
 // @downloadURL  https://git04.quodata.de/quodata/userscripts/-/raw/master/Gitlab%20own%20MergeRequests.user.js
 // @updateURL    https://git04.quodata.de/quodata/userscripts/-/raw/master/Gitlab%20own%20MergeRequests.user.js
@@ -13,6 +14,7 @@
 // ==/UserScript==
 (function() {
     'use strict';
+	var $ = jQuery;
 
     // Old function to try to select a certain picture comparing method in merge requests
     //    var swipe = 0;
@@ -83,7 +85,7 @@
     $merge_button.children().attr('href', new_href);
     $merge_button.find('span').toggleClass('gitlab-own-merge-requests merge-requests-count issues-count')
         .removeClass('hidden');
-    $merge_button.find('span').html(last_mr_count);
+    $merge_button.find('span').html(last_mr_count).removeClass('gl-display-none');
     $($merge_button.prop('outerHTML')).insertBefore(".user-counter:eq( 2 )");
 
     $.ajax({url: new_href}).done(function(data) {
@@ -95,17 +97,19 @@
     // Grey out issues with pending Merge Request when one is open
     if(document.location.href.indexOf('dashboard/issues?') !== -1 && document.location.href.indexOf('assignee_username=') !== -1){
         var grey_issues = GM_getValue("grey_issues") || {};
+        function greyOut($el){$el.css('opacity', 0.4);}
+        $('li.issue:contains(Workflow: Code-Review)').each(function(){greyOut($(this));});
         $('li.issue:has(.issuable-mr)').each(function(){
             var $this = $(this);
-            var match = $(this).attr('url').match(/\/(\w+\/.+?)\/.*?(\d+)$/i);
+            var match = $(this).attr('url').match(/\/(.+?\/.+?)\/.*?(\d+)$/i);
             var project = encodeURIComponent(match[1]);
             var issue = match[2];
             var url = '/api/v4/projects/'+project+'/issues/'+issue+'/related_merge_requests?per_page=100';
 
             var cached = grey_issues[project + issue] || {};
             var now = Math.floor(Date.now() / 1000);
-            if(now - cached.time < 3600){
-                if(cached.greyed) $this.css('opacity', 0.4);
+            if(now - cached.time < 600){
+                if(cached.greyed) greyOut($this);
                 return;
             }
 
@@ -114,7 +118,7 @@
                 for(const prop in data){
                     if(data[prop].state === 'opened'){
                         greyed = true;
-                        $this.css('opacity', 0.4);
+                        greyOut($this);
                         break;
                     }
                 }
@@ -126,3 +130,4 @@
     }
 
 })();
+
