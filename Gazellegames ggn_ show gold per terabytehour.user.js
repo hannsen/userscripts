@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        gazellegames ggn: show gold per terabytehour
+// @name        Gazellegames  ggn: show gold per terabytehour
 // @namespace   gazellegames
 // @description calculates gold per terabytehour on ggn| Greasemonkey 4.1: ✔ Tampermonkey 4.4: ✔ 
 // @include     https://gazellegames.net/torrents.php?id=*
