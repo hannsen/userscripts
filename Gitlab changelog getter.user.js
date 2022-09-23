@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         GitLab Changelog Getter
 // @namespace    http://git04.quodata.de
-// @version      0.2
+// @version      0.5
 // @description  GitLab Changelog Getter
 // @author       hoanns
+// @require      https://code.jquery.com/jquery-3.1.1.min.js
 // @match        https://git04.quodata.de/*/merge_requests*
-// @downloadURL  https://github.com/hannsen/userscripts/raw/master/Gitlab%20changelog%20getter.user.js
-// @updateURL    https://github.com/hannsen/userscripts/raw/master/Gitlab%20changelog%20getter.user.js
+// @downloadURL  https://git04.quodata.de/quodata/userscripts/-/raw/master/Gitlab%20changelog%20getter.user.js
+// @updateURL    https://git04.quodata.de/quodata/userscripts/-/raw/master/Gitlab%20changelog%20getter.user.js
 // @grant        none
 // ==/UserScript==
 (function () {
@@ -24,6 +25,7 @@
     };
     var project_id = ids[project];
 
+
     var $butt = $('<button class="btn">Get Changelog</button>');
 
     function addGUI() {
@@ -36,26 +38,43 @@
     }
 
 
+    var datum = '';
     $butt.click(function () {
-        var datum = $('input[name="changelog"]').val();
+        datum = $('input[name="changelog"]').val();
         if (!datum) {
             alert('Choose date');
             return;
         }
-
-        $.getJSON(
-            'https://git04.quodata.de/api/v4/projects/' + project_id + '/merge_requests?state=merged&updated_after=' + datum + '&per_page=100',
-            function (data) {
-                var changelog = filterChangelog(data, datum);
-                $('html').html('<pre>' + changelog + '</pre>');
-            });
-
+        getJsonData();
     });
+
+
+    var all_changes = '';
+    var page = 1;
+
+    function getJsonData(){
+        $.getJSON(
+            'https://git04.quodata.de/api/v4/projects/' + project_id + '/merge_requests?state=merged&updated_after=' + datum + '&per_page=100&page=' + page,
+            function (data) {
+                if(!data.length){
+                    showChangelog(all_changes);
+                    return;
+                }
+                page++;
+                var changelog = filterChangelog(data, datum);
+                all_changes += changelog;
+                getJsonData();
+            });
+    }
+
+    function showChangelog(changelog){
+        $('html').html('<pre>' + changelog + '</pre>');
+    }
 
     function filterChangelog(data, datum) {
         var changelog = '';
         $(data).each(function () {
-            if (!this.merged_at >= datum) {
+            if (this.merged_at <= datum) {
                 return;
             }
             var desc = this.description;
@@ -80,3 +99,4 @@
     }
 
 })();
+
