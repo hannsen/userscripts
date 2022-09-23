@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name		gazellegames ggn: create request with steamid
+// @name		Gazellegames ggn: create request with steamid
 // @namespace	 https://gazellegames.net/
 // @version		 1.4
 // @description	  create request with steamid | Greasemonkey 4.1: ✕  Tampermonkey 4.4: ✔ 
