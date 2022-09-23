@@ -2,12 +2,12 @@
 // https://github.com/hannsen/userscripts
 // @name        actiTIME to Ausbilungsnachweis
 // @namespace     https://actitime.net/
-// @version         1.9
+// @version         1.10
 // @description      creates IHK Ausbilungsnachweis from actitime sheet | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔
 // @author         hoannsi
-// @match         https://ktr.quodata.de/actitime*
-// @downloadURL  https://github.com/hannsen/userscripts/raw/master/actiTIME%20to%20Ausbilungsnachweis.user.js
-// @updateURL    https://github.com/hannsen/userscripts/raw/master/actiTIME%20to%20Ausbilungsnachweis.user.js
+// @match         https://actitime.quodata.de/actitime/user/submit_tt.do*
+// @downloadURL  https://git04.quodata.de/quodata/userscripts/-/raw/master/actiTIME%20to%20Ausbilungsnachweis.user.js
+// @updateURL    https://git04.quodata.de/quodata/userscripts/-/raw/master/actiTIME%20to%20Ausbilungsnachweis.user.js
 // @grant         none
 // ==/UserScript==
 
@@ -316,3 +316,4 @@ table {width:90% ; margin:auto;}
 </html>
 `;
 }
+
