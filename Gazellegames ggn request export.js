@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ggn request exporter
+// @name         Gazellegames ggn request exporter
 // @namespace    http://gazellegames.net/
 // @version      0.3
 // @description  press f5 if it hangs
