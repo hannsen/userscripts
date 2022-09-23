@@ -2,14 +2,14 @@
 // https://github.com/hannsen/userscripts
 // @name         GitLab estimated time extractor
 // @namespace    http://tampermonkey.net/
-// @version      1.8
-// @description  Extract time estimations from gitlab issues to the issue list, also copyable to excel
+// @version      1.9
+// @description  Extract time estimations from gitlab issues to the issue list, also copyable to Excel
 // @author       hannsen
 // @match        *://git04.quodata.de/*/*/issues*
 // @match        *://git04.quodata.de/dashboard/issues*
 // @require      https://code.jquery.com/jquery-3.1.1.min.js
-// @downloadURL  https://raw.githubusercontent.com/hannsen/userscripts/master/GitLab%20estimated%20time%20extractor.user.js
-// @updateURL    https://raw.githubusercontent.com/hannsen/userscripts/master/GitLab%20estimated%20time%20extractor.user.js
+// @downloadURL  https://git04.quodata.de/quodata/userscripts/-/raw/master/GitLab%20estimated%20time%20extractor.user.js
+// @updateURL    https://git04.quodata.de/quodata/userscripts/-/raw/master/GitLab%20estimated%20time%20extractor.user.js
 // @grant        none
 // ==/UserScript==
 
@@ -68,11 +68,6 @@
                 // created_at
                 toExport += ($json.created_at ? $json.created_at : '') + "\t";
 
-                if (time_estimate != null){
-                    $('#issue_' + $json.id).find('.issuable-info').append(
-                        '<span class="label color-label" style="background-color: #222222">' + time_estimate + '</span>');
-                }
-
                 toExport += "\n";
                 toExportes += toExport;
             });
@@ -81,7 +76,7 @@
 
     var $swipeButton = $('.btn.btn-default.has-tooltip').clone();
     $swipeButton.removeAttr('href').click( function(){
-        copyToClipboard(toExportes); alert('Copied to clipboard, paste to excel'); });
+        copyToClipboard(toExportes); alert('Copied to clipboard, paste to Excel'); });
     $swipeButton.text('Copy issue info');
     $swipeButton.insertAfter('.btn.btn-default.has-tooltip');
 
@@ -93,6 +88,5 @@
         document.execCommand('copy');
         document.body.removeChild(el);
     };
-
-
 })();
+
