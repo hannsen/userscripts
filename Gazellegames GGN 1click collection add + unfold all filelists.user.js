@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        gazellegames GGN 1click collection add + unfold all filelists
+// @name        Gazellegames GGN 1click collection add + unfold all filelists
 // @namespace   https://gazellegames.net/torrents
 // @description unfolds all filelists | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔ 
 // @include     https://gazellegames.net/torrents.php?id=*
