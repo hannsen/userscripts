@@ -1,6 +1,6 @@
 // ==UserScript==
 // https://github.com/hannsen/userscripts
-// @name        actiTIME to Ausbilungsnachweis
+// @name        ActiTIME to Ausbilungsnachweis
 // @namespace     https://actitime.net/
 // @version         1.10
 // @description      creates IHK Ausbilungsnachweis from actitime sheet | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔
