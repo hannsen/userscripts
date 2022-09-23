@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name		 gazellegames GGn New Uploady
+// @name		 Gazellegames GGn New Uploady
 // @namespace	 https://gazellegames.net/
 // @version		 6.4
 // @description	 Steam Uploady Fork for GGn | Greasemonkey 4.1: ✕ Tampermonkey 4.4: ✔
