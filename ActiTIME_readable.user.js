@@ -30,6 +30,7 @@
 
     });
 
+    
     $('td.leaveButtonCell:has(table.nonworking)').each(function(){
        var index = $(this).closest('td')[0].cellIndex;
         index = index + 2; // header has different index than input columns
