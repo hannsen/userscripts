@@ -4,7 +4,7 @@
 // @version      2024-03-01
 // @description  try to take over the world!
 // @author       You
-// @match        https://tikt0kcounter.net/*
+// @match        https://tiktokcounter.net/*
 // @grant        none
 // @downloadURL  https://github.com/hannsen/userscripts/raw/master/Tikt0kcounter_bypass.user.js
 // @updateURL    https://github.com/hannsen/userscripts/raw/master/Tikt0kcounter_bypass.user.js
