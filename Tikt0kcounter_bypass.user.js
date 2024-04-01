@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2024-03-01
+// @version      2024-04-01
 // @description  try to take over the world!
 // @author       You
 // @match        https://tiktokcounter.net/*
