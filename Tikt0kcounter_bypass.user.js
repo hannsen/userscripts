@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2024-04-01
+// @version      2024-04-24
 // @description  try to take over the world!
 // @author       You
 // @match        https://tiktokcounter.net/*
+// @match        https://tpayr.xyz/*
 // @grant        none
 // @downloadURL  https://github.com/hannsen/userscripts/raw/master/Tikt0kcounter_bypass.user.js
 // @updateURL    https://github.com/hannsen/userscripts/raw/master/Tikt0kcounter_bypass.user.js
@@ -12,9 +13,9 @@
 
 
 function fastclick(){
-        isHoverDone = true; isTimerCompleted = true; isAdClickDone = true; isFirstClickDone = true;
+        isHoverDone = true; isTimerCompleted = true; isAdClickDone = true; isFirstClickDone = true; isClownClickDone = true;
     formulaSend(new MouseEvent('click', { 'bubbles': true }));
 }
-window.setTimeout(fastclick, 23000);
+window.setTimeout(fastclick, 5000);
 
 
