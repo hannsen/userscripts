@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2024-04-25
+// @version      2024-04-26
 // @description  try to take over the world!
 // @author       You
 // @match        https://tiktokcounter.net/*
@@ -20,3 +20,15 @@ function fastclick(){
 window.setTimeout(fastclick, 5000);
 
 
+function findVarname(){
+    var scripts = document.querySelectorAll('script');
+    for(var i = 0; i < scripts.length; i++){
+        var match = scripts[i].innerHTML.match(/\(isTimerCompleted\s&&\s(.+)\)/);
+        if(match){
+            window[match[1]] = true;
+        }
+    }
+
+}
+
+window.setTimeout(findVarname, 2000);
