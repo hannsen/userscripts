@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2024-04-26
+// @version      2024-04-27
 // @description  try to take over the world!
 // @author       You
 // @match        https://tiktokcounter.net/*
 // @match        https://tpayr.xyz/*
 // @match        https://lifgam.online/*
+// @match        https://waezf.xyz/*
 // @grant        none
 // @downloadURL  https://github.com/hannsen/userscripts/raw/master/Tikt0kcounter_bypass.user.js
 // @updateURL    https://github.com/hannsen/userscripts/raw/master/Tikt0kcounter_bypass.user.js
