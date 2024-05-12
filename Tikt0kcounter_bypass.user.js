@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2024-05-07
+// @version      2024-05-12
 // @description  try to take over the world!
 // @author       You
 // @match        https://*/*
@@ -12,7 +12,8 @@
 
 
 
-if(document.getElementById('poweredByProfitsFly') || document.querySelector('script[src="https://tiktokcounter.net/ad.js"]')){
+if(document.getElementById('poweredByProfitsFly') || document.querySelector('[onclick="formulaSend(event)"]')){
+
     function fastclick(){
         isHoverDone = true; isTimerCompleted = true; isAdClickDone = true; isFirstClickDone = true; isClownClickDone = true;
         formulaSend(new MouseEvent('click', { 'bubbles': true }));
