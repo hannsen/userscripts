@@ -14,6 +14,7 @@
 
 if(document.getElementById('poweredByProfitsFly') || document.querySelector('[onclick$="formulaSend(event)"]')){
 
+
     function fastclick(){
         isHoverDone = true; isTimerCompleted = true; isAdClickDone = true; isFirstClickDone = true; isClownClickDone = true;
         formulaSend(new MouseEvent('click', { 'bubbles': true }));
@@ -31,7 +32,17 @@ if(document.getElementById('poweredByProfitsFly') || document.querySelector('[on
 
 
 
-    window.setTimeout(findVarname, 2000);
-    window.setTimeout(fastclick, 5000);
+    window.setTimeout(findVarname, 8000);
+    window.setTimeout(fastclick, 10000);
 }
+
+function findFlyIncInpiut(){
+    var ttc_flyIncInput = document.querySelector('div.card-container > div.card > form[action][style="display: none;"]');
+    if(ttc_flyIncInput) ttc_flyIncInput.style.display = 'block';
+}
+window.setTimeout(findFlyIncInpiut, 8000);
+
+
+
+
 
