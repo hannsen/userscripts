@@ -48,7 +48,7 @@ window.setTimeout(findFlyIncInpiut, 8000);
 if(window.location.href.indexOf('https://get' + '-' + 'to' + '.' +'link/') >= 0 && GM_getValue('telegram_bot_url')){
     let rls=document.querySelector('#content-box h2').textContent;
     let megaurl=document.querySelector('a[href*="mega.nz"]').href;
-    fetch(GM_getValue('telegram_bot_url') + rls + " " + megaurl.replace('#','%23'));
+    fetch(GM_getValue('telegram_bot_url') + rls + " " + megaurl.replace('#','%23') + '&disable_web_page_preview=1');
     window.onbeforeunload = function (e) {return;}
 }
 
