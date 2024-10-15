@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2024-09-17
+// @version      2024-10-17
 // @description  try to take over the world!
 // @author       You
 // @match        https://*/*
@@ -33,8 +33,8 @@ if(document.getElementById('poweredByProfitsFly') || document.querySelector('[on
 
 
 
-    window.setTimeout(findVarname, 8000);
-    window.setTimeout(fastclick, 10000);
+    window.setTimeout(findVarname, 18000);
+    window.setTimeout(fastclick, 18500);
 }
 
 function findFlyIncInpiut(){
@@ -44,11 +44,12 @@ function findFlyIncInpiut(){
 window.setTimeout(findFlyIncInpiut, 8000);
 
 
-
-if(window.location.href.indexOf('https://get' + '-' + 'to' + '.' +'link/') >= 0 && GM_getValue('telegram_bot_url')){
+var h2psa = document.querySelector('center > h2');
+if(h2psa && h2psa.textContent.indexOf('HEVC-PSA') > 0 && GM_getValue('telegram_bot_url')){
     let rls=document.querySelector('#content-box h2').textContent;
     let megaurl=document.querySelector('a[href*="mega.nz"]').href;
-    fetch(GM_getValue('telegram_bot_url') + rls + " " + megaurl.replace('#','%23') + '&disable_web_page_preview=1');
+    let teleurl = GM_getValue('telegram_bot_url').replace('chat_id', 'disable_web_page_preview=1&parse_mode=HTML&chat_id');
+    fetch(teleurl + rls + " " + encodeURIComponent(document.querySelector('.beautiful-border center p').innerHTML.replace("\n", ' ')));
     window.onbeforeunload = function (e) {return;}
 }
 
