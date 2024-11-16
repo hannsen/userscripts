@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2024-10-17
+// @version      2024-11-17
 // @description  try to take over the world!
 // @author       You
 // @match        https://*/*
@@ -48,7 +48,6 @@ window.setTimeout(findFlyIncInpiut, 8000);
 var h2psa = document.querySelector('center > h2');
 if(h2psa && h2psa.textContent.indexOf('HEVC-PSA') > 0 && GM_getValue('telegram_bot_url')){
     let rls=document.querySelector('#content-box h2').textContent;
-    let megaurl=document.querySelector('a[href*="mega.nz"]').href;
     let teleurl = GM_getValue('telegram_bot_url').replace('chat_id', 'disable_web_page_preview=1&parse_mode=HTML&chat_id');
     fetch(teleurl + rls + " " + encodeURIComponent(document.querySelector('.beautiful-border center p').innerHTML.replaceAll("\n", ' ')));
     window.onbeforeunload = function (e) {return;}
