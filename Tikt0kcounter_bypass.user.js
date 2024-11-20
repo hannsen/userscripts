@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2024-11-17
+// @version      2024-11-18
 // @description  try to take over the world!
 // @author       You
 // @match        https://*/*
@@ -11,39 +11,8 @@
 // @updateURL    https://github.com/hannsen/userscripts/raw/master/Tikt0kcounter_bypass.user.js
 // ==/UserScript==
 
-
-
-if(document.getElementById('poweredByProfitsFly') || document.querySelector('[onclick$="formulaSend(event)"]')){
-
-
-    function fastclick(){
-        isHoverDone = true; isTimerCompleted = true; isAdClickDone = true; isFirstClickDone = true; isClownClickDone = true;
-        formulaSend(new MouseEvent('click', { 'bubbles': true }));
-    }
-
-    function findVarname(){
-        var scripts = document.querySelectorAll('script');
-        for(var i = 0; i < scripts.length; i++){
-            var match = scripts[i].innerHTML.match(/\(isTimerCompleted\s&&\s(.+)\)/);
-            if(match){
-                window[match[1]] = true;
-            }
-        }
-    }
-
-
-
-    window.setTimeout(findVarname, 18000);
-    window.setTimeout(fastclick, 18500);
-    window.setTimeout(function(){window.location.reload()}, 25500);
-}
-
-function findFlyIncInpiut(){
-    var ttc_flyIncInput = document.querySelector('div.card-container > div.card > form[action][style="display: none;"]');
-    if(ttc_flyIncInput) ttc_flyIncInput.style.display = 'block';
-}
-window.setTimeout(findFlyIncInpiut, 8000);
-
+// Bypasser:
+// https://codeberg.org/Amm0ni4/bypass-all-shortlinks-debloated/raw/branch/main/Bypass_All_Shortlinks.user.js
 
 var h2psa = document.querySelector('center > h2');
 if(h2psa && h2psa.textContent.indexOf('HEVC-PSA') > 0 && GM_getValue('telegram_bot_url')){
