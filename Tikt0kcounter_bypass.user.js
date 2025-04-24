@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2025-01-16
+// @version      2025-04-16
 // @description  try to take over the world!
 // @author       You
 // @match        https://*/*
@@ -24,7 +24,34 @@ if(h2psa && h2psa.textContent.indexOf('HEVC-PSA') > 0 && GM_getValue('telegram_b
 
 
 
+if (window.location.href.startsWith("https://psa.wf/")) {
+  document.querySelectorAll('a[href^="https://psa.wf/goto/"]').forEach(link => {
+    const xdaHref = "https://moviezapiya.fun/?userLink=" + btoa(link);
+    const xdaLink = document.createElement("a");
+    xdaLink.href = xdaHref;
+    xdaLink.textContent = " [bypass]";
+    xdaLink.style.marginLeft = "5px";
+    xdaLink.target = "_blank"; // optional: open in new tab
 
+    link.insertAdjacentElement("afterend", xdaLink);
+  });
+}
+
+
+if (window.location.href.startsWith("https://moviezapiya.fun/")) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const userLinkParam = urlParams.get("userLink");
+
+  if (userLinkParam) {
+    const interval = setInterval(() => {
+      const input = document.getElementById("userLink");
+      if (input) {
+        input.value = atob(userLinkParam);
+        clearInterval(interval);
+      }
+    }, 200); // check every 200ms
+  }
+}
 
 
 
