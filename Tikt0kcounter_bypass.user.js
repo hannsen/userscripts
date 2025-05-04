@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2025-04-16
+// @version      2025-04-17
 // @description  try to take over the world!
 // @author       You
 // @match        https://*/*
@@ -48,6 +48,23 @@ if (window.location.href.startsWith("https://moviezapiya.fun/")) {
       if (input) {
         input.value = atob(userLinkParam);
         clearInterval(interval);
+
+        // Click process button
+        const buttons = Array.from(document.querySelectorAll("button"));
+        const processButton = buttons.find(btn => btn.textContent.trim().toLowerCase() === "process");
+        if (processButton) {
+            processButton.click();
+
+            // Start watching for the final link
+            const linkInterval = setInterval(() => {
+                const getToLink = document.querySelector('a[href^="https://get-to.link/"]');
+                if (getToLink) {
+                    clearInterval(linkInterval);
+                    window.location.href = getToLink.href; // Navigate to the link
+                }
+            }, 300); // check every 300ms
+        }
+
       }
     }, 200); // check every 200ms
   }
