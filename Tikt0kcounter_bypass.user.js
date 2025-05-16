@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2025-04-17
+// @version      2025-04-18
 // @description  try to take over the world!
 // @author       You
 // @match        https://*/*
@@ -15,7 +15,12 @@
 // https://codeberg.org/Amm0ni4/bypass-all-shortlinks-debloated/raw/branch/main/extra_bypasses/profitsfly_reload_helper.user.js
 
 var h2psa = document.querySelector('center > h2');
-if(h2psa && h2psa.textContent.indexOf('HEVC-PSA') > 0 && GM_getValue('telegram_bot_url')){
+GM_setValue('telegram_bot_url', '')
+if(h2psa && h2psa.textContent.indexOf('HEVC-PSA') > 0){
+    if(!GM_getValue('telegram_bot_url')){
+       let teleurl = prompt('Give me telegram bot url', 'https://api.telegram.org/XXX:XXX/sendMessage?chat_id=-XXX&text=');
+        GM_setValue('telegram_bot_url', teleurl)
+    }
     let rls=document.querySelector('#content-box h2').textContent;
     let teleurl = GM_getValue('telegram_bot_url').replace('chat_id', 'disable_web_page_preview=1&parse_mode=HTML&chat_id');
     fetch(teleurl + rls + " " + encodeURIComponent(document.querySelector('.beautiful-border center p').innerHTML.replaceAll("\n", ' ')));
