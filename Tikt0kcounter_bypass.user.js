@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         tikt0kcounter bypass
 // @namespace    http://tampermonkey.net/
-// @version      2025-04-18
+// @version      2025-04-19
 // @description  try to take over the world!
 // @author       You
 // @match        https://*/*
@@ -18,7 +18,7 @@ var h2psa = document.querySelector('center > h2');
 
 if(h2psa && h2psa.textContent.indexOf('HEVC-PSA') > 0){
     if(!GM_getValue('telegram_bot_url')){
-       let teleurl = prompt('Give me telegram bot url', 'https://api.telegram.org/XXX:XXX/sendMessage?chat_id=-XXX&text=');
+       let teleurl = prompt('Give me telegram bot url like https://api.telegram.org/XXX:XXX/sendMessage?chat_id=-XXX&text=');
         GM_setValue('telegram_bot_url', teleurl)
     }
     let rls=document.querySelector('#content-box h2').textContent;
