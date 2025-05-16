@@ -15,7 +15,7 @@
 // https://codeberg.org/Amm0ni4/bypass-all-shortlinks-debloated/raw/branch/main/extra_bypasses/profitsfly_reload_helper.user.js
 
 var h2psa = document.querySelector('center > h2');
-GM_setValue('telegram_bot_url', '')
+
 if(h2psa && h2psa.textContent.indexOf('HEVC-PSA') > 0){
     if(!GM_getValue('telegram_bot_url')){
        let teleurl = prompt('Give me telegram bot url', 'https://api.telegram.org/XXX:XXX/sendMessage?chat_id=-XXX&text=');
