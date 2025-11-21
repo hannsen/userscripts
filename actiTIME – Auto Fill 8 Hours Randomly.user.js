@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         actiTIME – Auto Fill 8 Hours Randomly (Skip Tasks 231 + 232)
 // @namespace    http://tampermonkey.net/
-// @version      1.5
+// @version      1.6
 // @description  Fill each working day with random times summing to 8h, skip specific tasks
 // @match        https://actitime.quodata.de/*
 // @grant        none
@@ -18,29 +18,43 @@
         setTimeout(() => waitFor(selector, callback), 250);
     }
 
-    function randomSplit(total, parts) {
-        if (parts <= 1) return [total];
+function randomSplit(total, parts) {
+    if (parts <= 1) return [round5(total)];
 
-        let cuts = [];
-        for (let i = 0; i < parts - 1; i++) cuts.push(Math.random());
-        cuts.sort();
+    // create random cut points
+    let cuts = [];
+    for (let i = 0; i < parts - 1; i++) cuts.push(Math.random());
+    cuts.sort();
 
-        let result = [];
-        let last = 0;
-        for (let c of cuts) {
-            result.push(Math.floor((c - last) * total));
-            last = c;
-        }
-        result.push(total - result.reduce((a,b)=>a + b, 0));
-
-        return result;
+    let raw = [];
+    let last = 0;
+    for (let c of cuts) {
+        raw.push((c - last) * total);
+        last = c;
     }
+    raw.push(total - raw.reduce((a, b) => a + b, 0));
 
-    function minutesToHHMM(mins) {
-        const h = Math.floor(mins / 60);
-        const m = mins % 60;
-        return `${h}:${m.toString().padStart(2,'0')}`;
-    }
+    // Round each segment to nearest 5 minutes
+    let rounded = raw.map(x => round5(Math.floor(x)));
+
+    // fix rounding drift: adjust final one so total stays exactly 480
+    const diff = total - rounded.reduce((a,b) => a + b, 0);
+    rounded[rounded.length - 1] += diff;
+
+    return rounded;
+}
+
+// Round minutes to nearest 5-minute increment
+function round5(mins) {
+    return Math.round(mins / 5) * 5;
+}
+
+// Format minutes as H:MM (with MM always ending in 00,05,10,...55)
+function minutesToHHMM(mins) {
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return `${h}:${m.toString().padStart(2,'0')}`;
+}
 
     function getTaskIdFromInput(input) {
         // Extract number from: timeTrack[438].spentStr[0]
