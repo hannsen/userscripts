@@ -1,14 +1,16 @@
 // ==UserScript==
-// @name         actiTIME – Auto Fill 8 Hours Randomly (with Max Tasks + Label)
+// @name         actiTIME – Auto Fill 8 Hours Randomly (Skip Tasks 231 + 232)
 // @namespace    http://tampermonkey.net/
-// @version      1.4
-// @description  Fill each working day with random times summing to 8h, with limit on tasks per day
+// @version      1.5
+// @description  Fill each working day with random times summing to 8h, skip specific tasks
 // @match        https://actitime.quodata.de/*
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
+
+    const EXCLUDED_TASKS = [231, 232];   // ⬅️ Do NOT fill these tasks
 
     function waitFor(selector, callback) {
         const el = document.querySelector(selector);
@@ -26,18 +28,24 @@
         let result = [];
         let last = 0;
         for (let c of cuts) {
-            let v = Math.floor((c - last) * total);
-            result.push(v);
+            result.push(Math.floor((c - last) * total));
             last = c;
         }
-        result.push(total - result.reduce((a,b) => a + b, 0));
+        result.push(total - result.reduce((a,b)=>a + b, 0));
+
         return result;
     }
 
     function minutesToHHMM(mins) {
         const h = Math.floor(mins / 60);
         const m = mins % 60;
-        return `${h}:${m.toString().padStart(2, '0')}`;
+        return `${h}:${m.toString().padStart(2,'0')}`;
+    }
+
+    function getTaskIdFromInput(input) {
+        // Extract number from: timeTrack[438].spentStr[0]
+        const match = input.name.match(/timeTrack\[(\d+)\]/);
+        return match ? parseInt(match[1], 10) : null;
     }
 
     function fillDay(day, maxTasks) {
@@ -47,10 +55,17 @@
 
         if (inputs.length === 0) return;
 
-        // Limit the number of tasks
-        if (maxTasks > 0 && maxTasks < inputs.length) {
+        // ⛔ Remove excluded tasks
+        inputs = inputs.filter(inp => {
+            const id = getTaskIdFromInput(inp);
+            return !EXCLUDED_TASKS.includes(id);
+        });
+
+        // Apply max tasks/day restriction
+        if (maxTasks > 0 && maxTasks < inputs.length)
             inputs = inputs.sort(() => Math.random() - 0.5).slice(0, maxTasks);
-        }
+
+        if (inputs.length === 0) return;
 
         const totalMinutes = 8 * 60;
         const durations = randomSplit(totalMinutes, inputs.length);
@@ -71,7 +86,7 @@
             fillDay(day, maxTasks);
         }
 
-        alert("Filled days with random 8 hours!");
+        alert("Filled days with random 8 hours (skipping tasks 231 + 232)");
     }
 
     function addControls() {
@@ -84,7 +99,6 @@
         container.style.gap = "8px";
         container.style.marginLeft = "20px";
 
-        // Label
         const label = document.createElement("label");
         label.textContent = "Max tasks/day:";
         label.setAttribute("for", "maxTasksInput");
@@ -92,7 +106,6 @@
         label.style.fontWeight = "bold";
         label.style.marginRight = "4px";
 
-        // Input
         const input = document.createElement("input");
         input.id = "maxTasksInput";
         input.type = "number";
@@ -104,7 +117,6 @@
         input.style.borderRadius = "4px";
         input.value = "0";
 
-        // Button
         const btn = document.createElement("button");
         btn.textContent = "Auto-Fill 8h Random";
         btn.style.padding = "6px 12px";
