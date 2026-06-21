@@ -13,7 +13,8 @@
 
 // Bypasser:
 // https://codeberg.org/Amm0ni4/bypass-all-shortlinks-debloated/raw/branch/main/extra_bypasses/profitsfly_reload_helper.user.js
-
+// Better: 
+// https://github.com/cyan-n1d3/PSAbypass
 var h2psa = document.querySelector('center > h2');
 
 if(h2psa && h2psa.textContent.indexOf('HEVC-PSA') > 0){
